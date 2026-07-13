@@ -54,7 +54,41 @@ Key Concepts:
 - Single Pass Traversal
 
 =========================================================
+               Buy & Sell Stock
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+      Pattern               Greedy
+          │
+          ▼
+Scan array once
+          │
+          ▼
+Keep minimum price so far
+          │
+          ▼
+Today's Profit
+=
+Current Price - Min Price
+          │
+          ▼
+Is profit greater?
+          │
+      ┌───┴────┐
+      │        │
+     Yes      No
+      │        │
+Update       Continue
+Max Profit
+      │
+      ▼
+Return Max Profit
+
+Key Memory Trick
+
+Need the maximum profit? Think "Minimum Price So Far".
 */
+
 public static int maxProfit(int[] nums) {
     int minPrice = nums[0];
     int maxProfit = 0;
