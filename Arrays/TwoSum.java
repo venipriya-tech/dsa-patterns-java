@@ -36,6 +36,33 @@ Key Concepts:
 - One-pass traversal
 
 =========================================================
+                    Two Sum
+                       │
+        ┌──────────────┴──────────────┐
+        │                             │
+    Pattern                      HashMap
+        │                             │
+ Find two numbers             number → index
+ whose sum = target
+        │
+        ▼
+For each element
+        │
+        ▼
+complement = target - nums[i]
+        │
+        ├── Complement exists?
+        │       │
+        │       ├── Yes → Return indices
+        │       │
+        │       └── No → Store current number
+        │
+        ▼
+Continue
+
+Key Memory Trick
+
+Need to find a pair? Think "Complement + HashMap".
 */
 
 import java.util.HashMap;
