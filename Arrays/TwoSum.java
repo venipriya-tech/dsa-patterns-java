@@ -1,13 +1,41 @@
 /*
+=========================================================
 Problem: Two Sum
 Pattern: Hash Map
+Difficulty: Easy
+
+Problem Statement:
+Given an array of integers nums and an integer target,
+return the indices of the two numbers such that they add
+up to the target.
+You may assume that each input has exactly one solution, and you may not use the same element twice.
+
+Example:
+Input:
+nums = [2,7,11,15]
+target = 9
+
+Output:
+[0,1]
 
 Approach:
-Use a HashMap to store previously seen numbers and their indices.
-For each element, check if the complement exists in the map.
+1. Traverse the array once.
+2. Calculate the complement = target - nums[i].
+3. Check if the complement already exists in the HashMap.
+4. If found, return the indices.
+5. Otherwise, store the current element and its index.
 
-Time Complexity: O(n)
-Space Complexity: O(n)
+Time Complexity:
+O(n)
+
+Space Complexity:
+O(n)
+
+Key Concepts:
+- HashMap
+- One-pass traversal
+
+=========================================================
 */
 
 import java.util.HashMap;
