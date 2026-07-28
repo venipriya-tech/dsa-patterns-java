@@ -1,0 +1,124 @@
+/*
+=========================================================
+Problem: Product of Array Except Self
+Pattern: Prefix Product + Suffix Product
+Difficulty: Medium
+
+Problem Statement:
+Given an integer array nums, return an array answer
+such that answer[i] is equal to the product of all
+the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is
+guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time
+and without using the division operator.
+
+Example 1:
+Input:
+nums = [1,2,3,4]
+
+Output:
+[24,12,8,6]
+
+Explanation:
+answer[0] = 2 × 3 × 4 = 24
+answer[1] = 1 × 3 × 4 = 12
+answer[2] = 1 × 2 × 4 = 8
+answer[3] = 1 × 2 × 3 = 6
+
+Example 2:
+Input:
+nums = [-1,1,0,-3,3]
+
+Output:
+[0,0,9,0,0]
+
+Approach:
+1. Create an answer array.
+2. Traverse from left to right and store the
+   product of all elements before the current index.
+3. Traverse from right to left while maintaining
+   the product of all elements after the current index.
+4. Multiply the left product with the right product.
+5. Return the answer array.
+
+Time Complexity:
+O(n)
+
+Explanation:
+- First pass computes prefix products.
+- Second pass computes suffix products.
+- Each element is processed twice.
+- Overall time complexity is O(n).
+
+Space Complexity:
+O(1) Extra Space
+
+Explanation:
+- No additional array is used except the output array.
+- Prefix products are stored directly in the answer array.
+- Only two variables (leftProduct and rightProduct)
+  are maintained.
+
+Key Concepts:
+- Prefix Product
+- Suffix Product
+- Array Traversal
+- Space Optimization
+
+=========================================================
+             Product of Array Except Self
+                        │
+        ┌───────────────┴────────────────┐
+        │                                │
+     Pattern                  Prefix + Suffix
+        │                                │
+ Compute Left Product         Compute Right Product
+        │                                │
+        └───────────────┬────────────────┘
+                        │
+                        ▼
+        answer[i] = Left × Right
+                        │
+        ┌───────────────┴────────────────┐
+        │                                │
+ Left Product                  Right Product
+(Product before i)           (Product after i)
+        │                                │
+        └───────────────┬────────────────┘
+                        │
+                        ▼
+                Final Answer Array
+
+Key Memory Trick
+
+Need the product except the current element?
+
+Think:
+Left Product × Right Product
+
+Never multiply the current element itself.
+
+=========================================================
+*/
+public static int[] arrayProductExceptItself(int[] arr) {
+
+    int leftProduct = 1;
+    int[] prodArray = new int[arr.length];
+
+    for (int i = 0; i < arr.length; i++) {
+        prodArray[i] = leftProduct;
+        leftProduct *= arr[i];
+    }
+
+    int rightProduct = 1;
+
+    for (int i = arr.length - 1; i >= 0; i--) {
+        prodArray[i] = prodArray[i] * rightProduct;
+        rightProduct *= arr[i];
+    }
+
+    return prodArray;
+}
